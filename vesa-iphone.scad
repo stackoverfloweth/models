@@ -1,6 +1,6 @@
 vesaGap=100;
-monitorGap=80-18;
-depth=3;
+monitorGap=140-18;
+depth=10;
 vesaArmWidth=12;
 bodyWidth=40;
 
@@ -16,16 +16,13 @@ difference() {
         
         vesaBody();
         
-        translate([0, -2, 0])
+        translate([0, 58, 0])
         magsafeArm();
     }
     
     translate([0, -.75, 0])
     cylinder(depth, d=60, $fn=180);
 }
-
-//translate([0, 0, 10]))
-//vesaBodyCover();
 
 module vesaEnd() { 
     difference() {
@@ -47,33 +44,15 @@ module vesaBody() {
     }
 }
 
-module vesaBodyCover() {
-    union() {
-        intersection() {
-            difference() {
-                translate([0, 180, 0])
-                rotate([90, 0, 0])
-                cylinder(h=150, d=44.6, $fn=180);
-                
-                translate([0, 180, 0])
-                rotate([90, 0, 0])
-                cylinder(h=150, d=38.6, $fn=180);
-            }
-            
-            translate([-25, 38, -10-50])
-            cube([50, 96, 50]);
-        }
-    }
-}
-
 module magsafeArm() {
+    depth=3;
     armDepth=7;
     armWidth=28.5;
     
     union() {        
         translate([-bodyWidth/2, 97, 0])
         rotate([90, 0, 0])
-        differencearmWidth() {
+        difference() {
             cube([bodyWidth, 50, armDepth+depth*2]);
             
             translate([depth*2, 0, depth])

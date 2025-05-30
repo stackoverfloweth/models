@@ -19,26 +19,33 @@ door();
 
 feet();
 
-translate([0, 28, 0])
-pad();
+translate([0, 22, 0])
+pad(false);
 
-footSize=1.25;
-footOffset=0.625;
+foot_size=0.75;
+foot_offset=0.375;
+
+pad_height=4;
+pad_length=12;
+pad_width=18;
 
 module feet() {
   difference(){
     union() {
-      translate([-width/2+footOffset, height/2+2, -depth/2+footOffset])
+      translate([-width/2+foot_offset, height/2, -depth/2+foot_offset])
       foot();
 
-      translate([width/2-footOffset, height/2+2, -depth/2+footOffset])
+      translate([width/2-foot_offset, height/2, -depth/2+foot_offset])
       foot();
 
-      translate([-width/2+footOffset, height/2+2, depth/2-footOffset])
+      translate([-width/2+foot_offset, height/2, depth/2-foot_offset])
       foot();
       
-      translate([width/2-footOffset, height/2+2, depth/2-footOffset])
+      translate([width/2-foot_offset, height/2, depth/2-foot_offset])
       foot();
+
+      translate([0, height/2+2.5, 0])
+      cube([width, pad_height-2, depth], center=true);
     }
 
     cube([width-2, height*2, depth-2], center=true);
@@ -46,7 +53,7 @@ module feet() {
 }
 
 module foot() {
-  cube([footSize, 6, footSize], center=true);
+  cube([foot_size, 6, foot_size], center=true);
 }
 
 module door() {
@@ -120,9 +127,6 @@ module roof() {
 }
 
 module pad(withEars=true) {
-  pad_height=4;
-  pad_length=12;
-  pad_width=18;
 
   difference() {
     union() {
@@ -150,25 +154,10 @@ module pad(withEars=true) {
       }
     }
 
-    cube([width-2, 10, depth-2], center=true);
+    cube([width-2, pad_height, depth-2], center=true);
 
-    translate([-width/2+footOffset, -3, -depth/2+footOffset])
-    scale(1.1)
-    foot();
-
-    translate([width/2-footOffset, -3, -depth/2+footOffset])
-    scale(1.1)
-    foot();
-
-    translate([-width/2+footOffset, -3, depth/2-footOffset])
-    scale(1.1)
-    foot();
-    
-    translate([width/2-footOffset, -3, depth/2-footOffset])
-    scale(1.1)
-    foot();
-
-    cube([width-2, height*2, depth-2], center=true);
+    translate([0, -1, 0])
+    cube([width+0.25, pad_height-2, depth+0.25], center=true);
   }
 }
 
