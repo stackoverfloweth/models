@@ -41,6 +41,12 @@ union() {
         
         translate([0, 0, 0])
         cube([width, length, height + 20], true);
+
+        // handle gate
+        translate([-width/2-depth, 0, 80])
+        gate(50, 10);
+        translate([width/2, 0, 80])
+        gate(50, 10);
     }
     
     translate([-width/2-depth/2, -length/2-depth/2, 0])
@@ -68,6 +74,41 @@ union() {
     rotate([0, 0, 90])
     translate([-82, -105.5, -70])
     track();
+
+    // handle gate
+    translate([-width/2-depth, 0, 80])
+    difference() {
+        gate(50, 10);
+
+        translate([0, 0, -10])
+        gate(40);
+
+        translate([0, -25, -10])
+        cube([depth, 50, 50]);
+    }
+
+    translate([width/2, 0, 80])
+    difference() {
+        gate(50, 10);
+
+        translate([0, 0, -10])
+        gate(40);
+
+        translate([0, -25, -10])
+        cube([depth, 50, 50]);
+    }
+}
+
+module gate(d, offset=0) {
+    hull() {
+        translate([0, 0, -offset])
+        rotate([0, 90, 0])
+        cylinder(d=d, h=depth, $fn=180);
+
+        translate([0, 0, -d])
+        rotate([0, 90, 0])
+        cylinder(d=d, h=depth, $fn=180);
+    }
 }
 
 module track() {

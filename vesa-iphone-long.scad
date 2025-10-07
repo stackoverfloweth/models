@@ -1,5 +1,5 @@
 vesaGap=100;
-monitorGap=80-18;
+monitorGap=140-18;
 depth=10;
 vesaArmWidth=12;
 bodyWidth=40;
@@ -16,7 +16,7 @@ difference() {
         
         vesaBody();
         
-        translate([0, -2, 0])
+        translate([0, 58, 0])
         magsafeArm();
     }
     
@@ -53,13 +53,10 @@ module magsafeArm() {
         translate([-bodyWidth/2, 97, 0])
         rotate([90, 0, 0])
         difference() {
-            cube([bodyWidth, 50, armDepth+depth*2]);
+            cube([bodyWidth, 75, armDepth+depth*2]);
             
             translate([depth*2, 0, depth])
-            cube([armWidth, 50, armDepth]);
-        
-            translate([20, 25, -14])
-            cylinder(h=30, d=24, $fn=180);
+            cube([armWidth, 75, armDepth]);
         }
     }
 }
