@@ -1,6 +1,6 @@
-aInsideDiameter=0;
-aOutsideDiameter=26.5;
-bInsideDiameter=31.5;
+aInsideDiameter=32;
+aOutsideDiameter=0;
+bInsideDiameter=39;
 bOutsideDiameter=0;
 
 wallThickness=5;
