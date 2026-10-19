@@ -1,5 +1,5 @@
 base_width=25;
-base_depth=1.25;
+base_depth=1.75;
 $fn=180;
 
 module round(width) {
@@ -22,10 +22,11 @@ module magnet(d=3.25) {
     cylinder(h=1.1, d=d);
 }
 
-round(40);
+square(40, 45);
+// round(40);
 
-translate([0, 50, 0])
-round(30);
+// translate([0, 50, 0])
+// round(30);
 
-translate([0, 100, 0])
-round(25);
+// translate([0, 100, 0])
+// round(25);
